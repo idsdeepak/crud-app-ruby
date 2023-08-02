@@ -1,0 +1,41 @@
+<section class="container my-5">
+  <h1>My Todos</h1>
+  <div class="d-flex justify-content-end">
+    <%= link_to "Add todo", new_todo_path, "class": "btn btn-info" %>
+  </div>
+  <table class="table my-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Todo</th>
+        <th scope="col">Created Time</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @todos.each_with_index do |todo,index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td>
+          <%= link_to todo.title, todo %>
+        </td>
+        <td><%= todo.todo %></td>
+        <td><%= todo.created_at ? todo.created_at.strftime("%Y-%m-%d %H:%M") : "N/A" %></td>
+        <td>
+        <%= link_to "Edit", edit_todo_path(todo) , "class": "btn btn-info" %>
+        <%= 
+          link_to "Destroy", 
+          todo_path(todo), 
+          "class": "btn btn-danger",
+          data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                }
+        %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>

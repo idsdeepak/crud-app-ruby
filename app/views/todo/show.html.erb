@@ -1,0 +1,21 @@
+<section class="d-flex flex-column justify-content-center align-items-center min-vh-100 py-5">
+  <div class="card bg-light mb-3 w-100" style="max-width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= @todo.title %></h5>
+      <p class="card-text"><%= @todo.todo %></p>
+    </div>
+  </div>
+  <div>
+    <%= link_to "Back", todo_index_path, "class": "btn btn-info" %>
+    <%= link_to "Edit", edit_todo_path(@todo), "class": "btn btn-secondary" %>
+    <%= 
+      link_to "Destroy", 
+      todo_path(@todo), 
+      "class": "btn btn-danger",
+      data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            }
+    %>
+  </div>
+</section>

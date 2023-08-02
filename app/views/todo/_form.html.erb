@@ -1,0 +1,24 @@
+  <div class="d-flex justify-content-end">
+    <%= link_to "Back", todo_index_path, "class": "btn btn-info" %>
+  </div>
+  <%= form_with model: @todo, url: @todo.persisted? ? todo_path(@todo) : todo_index_path do |form| %>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: 'form-control' %>
+      <% @todo.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group my-4">
+      <%= form.label :todo %>
+      <%= form.text_area :todo, class: 'form-control' %>
+      <% @todo.errors.full_messages_for(:todo).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
